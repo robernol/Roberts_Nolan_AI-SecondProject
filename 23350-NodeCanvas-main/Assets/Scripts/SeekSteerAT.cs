@@ -7,8 +7,9 @@ using UnityEngine;
 namespace NodeCanvas.Tasks.Actions {
 
 	public class SeekSteerAT : ActionTask {
-        public BBParameter<Vector3> targetPosition;
+        public BBParameter<Vector3> moveDirecton;
         public Transform targetTransform;
+		public float strength;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -20,12 +21,13 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			EndAction(true);
+
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-            targetPosition.value = targetTransform.position;
+			Vector3 totalDirection = (targetTransform.position - agent.transform.position).normalized;
+            moveDirecton.value += totalDirection * strength;
         }
 
 		//Called when the task is disabled.

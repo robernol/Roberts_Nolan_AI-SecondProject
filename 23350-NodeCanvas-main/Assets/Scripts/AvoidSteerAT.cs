@@ -7,10 +7,13 @@ using UnityEngine.EventSystems;
 namespace NodeCanvas.Tasks.Actions
 {
 
-    public class MoveAT : ActionTask
+    public class AvoidSteerAT : ActionTask
     {
         public BBParameter<Vector3> moveDirection;
-        public BBParameter<float> speed;
+        public LayerMask avoidMask;
+
+        public float detectionDistance;
+        public float strength;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -30,12 +33,18 @@ namespace NodeCanvas.Tasks.Actions
         //Called once per frame while the action is active.
         protected override void OnUpdate()
         {
-            Vector3 directionToMove = moveDirection.value;
+            Collider[] detectedColliders = Physics.OverlapSphere(agent.transform.position, detectionDistance, avoidMask);
+            Vector3 totalDirection = Vector3.zero;
 
-            directionToMove = new Vector3(directionToMove.x, 0f, directionToMove.z);
+            foreach (Collider detectedCollider in detectedColliders)
+            {
+                Vector3 directionToHazard = detectedCollider.transform.position - agent.transform.position;
+                totalDirection -= directionToHazard;
+            }
 
-            agent.transform.position += directionToMove.normalized * speed.value * Time.deltaTime;
-            moveDirection.value = Vector3.zero;
+            totalDirection = totalDirection.normalized;
+            moveDirection.value += totalDirection * strength;
+            //moveDirecton.value = totalDirection * strength;
         }
 
         //Called when the task is disabled.
