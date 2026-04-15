@@ -260,11 +260,10 @@ Transform:
   m_GameObject: {fileID: 230732426}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.459, z: -1.481}
-  m_LocalScale: {x: 2.9976, y: 0.3705933, z: 2.9976}
+  m_LocalPosition: {x: 0, y: 0.4590003, z: -1.6891563}
+  m_LocalScale: {x: 2.9976, y: 0.37059334, z: 2.9975998}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2063201852}
+  m_Children: []
   m_Father: {fileID: 2041883274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &230732429
@@ -579,9 +578,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ParadoxNotion::NodeCanvas.Framework.Blackboard
   _parentBlackboard: {fileID: 0}
-  _serializedBlackboard: '{"_variables":{}}'
-  _objectReferences: []
-  _serializedVariables: []
+  _serializedBlackboard: '{"_variables":{"bubble":{"_value":1,"_name":"bubble","_id":"d05e9c04-d014-4e38-b2ed-07b0af3426df","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"bubbleBlower":{"_value":2,"_name":"bubbleBlower","_id":"fb5b5e51-e6bf-4825-b54c-ad697eb13cc0","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"playerPos":{"_value":3,"_name":"playerPos","_id":"5a076976-6498-4fab-8f3f-9387b39cdf81","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
+    UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 2694316121743643954, guid: 676cdb72d4a7ad8418e53e783141561e, type: 3}
+  - {fileID: 1723583140}
+  - {fileID: 719328237}
+  _serializedVariables:
+  - _json: '{"_value":1,"_name":"bubble","_id":"d05e9c04-d014-4e38-b2ed-07b0af3426df","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: 2694316121743643954, guid: 676cdb72d4a7ad8418e53e783141561e, type: 3}
+  - _json: '{"_value":1,"_name":"bubbleBlower","_id":"fb5b5e51-e6bf-4825-b54c-ad697eb13cc0","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: 1723583140}
+  - _json: '{"_value":1,"_name":"playerPos","_id":"5a076976-6498-4fab-8f3f-9387b39cdf81","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: 719328237}
 --- !u!114 &595021466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: NodeCanvas::NodeCanvas.StateMachines.FSMOwner
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Bubble","_position":{"x":606.0,"y":154.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"hinge":1,"$type":"NodeCanvas.Tasks.Actions.OpenAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Open","_position":{"x":188.0,"y":299.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"hinge":1,"$type":"NodeCanvas.Tasks.Actions.CloseAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Close","_position":{"x":487.0,"y":508.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"}],"connections":[{"_condition":{"$type":"NodeCanvas.Tasks.Conditions.ProximityCT"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"_invert":true,"$type":"NodeCanvas.Tasks.Conditions.ProximityCT"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
+  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"waitTime":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Idle","_position":{"x":436.8549,"y":55.65683},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"parent":{},"clonePosition":{"_name":"bubbleBlower","_targetVariableID":"fb5b5e51-e6bf-4825-b54c-ad697eb13cc0"},"cloneRotation":{},"saveCloneAs":{"_name":""},"overrideAgent":{"_type":"UnityEngine.Transform","_name":"bubble","_targetVariableID":"d05e9c04-d014-4e38-b2ed-07b0af3426df"},"$type":"NodeCanvas.Tasks.Actions.InstantiateGameObject"},{"waitTime":{"_value":0.5},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Bubble","_position":{"x":537.4712,"y":152.3985},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"actions":[{"hinge":1,"$type":"NodeCanvas.Tasks.Actions.OpenAT"},{"waitTime":{"_value":3.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Open","_position":{"x":186.5565,"y":299.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"shakeTime":2.0,"$type":"NodeCanvas.Tasks.Actions.ShakeAT"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Shake","_position":{"x":92.81053,"y":455.1309},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_actionList":{"actions":[{"hinge":1,"$type":"NodeCanvas.Tasks.Actions.CloseAT"},{"waitTime":{"_value":3.0},"$type":"NodeCanvas.Tasks.Actions.Wait"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"Close","_position":{"x":240.5537,"y":519.8635},"$type":"NodeCanvas.StateMachines.ActionState","$id":"4"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"player":{"_name":"playerPos","_targetVariableID":"5a076976-6498-4fab-8f3f-9387b39cdf81"},"$type":"NodeCanvas.Tasks.Conditions.ProximityCT"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"0"},"$type":"NodeCanvas.StateMachines.FSMConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
   - {fileID: 2041883273}
@@ -603,8 +624,8 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: 183.3881, y: 11.367721}
-    _zoomFactor: 0.9873097
+    _translation: {x: 74.64515, y: 21.822409}
+    _zoomFactor: 0.9595509
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0
@@ -622,12 +643,13 @@ Transform:
   m_GameObject: {fileID: 595021464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.070114, y: -0.01, z: -14.18}
+  m_LocalPosition: {x: 0.070114, y: -0.01, z: 0.55}
   m_LocalScale: {x: 2.3965, y: 2.3965, z: 2.3965}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2100059089}
   - {fileID: 2041883274}
+  - {fileID: 1723583140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &719328234
@@ -1301,6 +1323,37 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1723583139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723583140}
+  m_Layer: 0
+  m_Name: BubbleBlower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723583140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723583139}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32629, y: 0.64982814, z: -1.5704633}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 595021467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1875826227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,10 +1382,11 @@ Transform:
   m_GameObject: {fileID: 1875826227}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000000024872, y: 0.10500004, z: -1.4810003}
-  m_LocalScale: {x: 3.4214606, y: 0.051044926, z: 3.4214606}
+  m_LocalPosition: {x: 0, y: 0.10500008, z: -1.6891568}
+  m_LocalScale: {x: 3.4214606, y: 0.05104494, z: 3.421461}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2063201852}
   m_Father: {fileID: 2041883274}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1875826229
@@ -1438,13 +1492,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041883273}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32629, y: 0.6498281, z: 7.7968435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32629, y: 0.64982814, z: 1.8585364}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 230732427}
   - {fileID: 1875826228}
+  - {fileID: 230732427}
   m_Father: {fileID: 595021467}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063201851
@@ -1474,11 +1528,11 @@ Transform:
   m_GameObject: {fileID: 2063201851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.74791384, z: -0.000058817237}
-  m_LocalScale: {x: 0.86742, y: 0.40780884, z: 0.86742}
+  m_LocalPosition: {x: 0, y: 1.5051144, z: -0.000051391406}
+  m_LocalScale: {x: 0.75996155, y: 2.960749, z: 0.7599614}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 230732427}
+  m_Father: {fileID: 1875826228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &2063201854
 MeshRenderer:
@@ -1565,8 +1619,8 @@ Transform:
   m_GameObject: {fileID: 2100059088}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.32629, y: 0.32, z: 6.3280196}
-  m_LocalScale: {x: 2.9976, y: 0.3705933, z: 2.9976}
+  m_LocalPosition: {x: 0.32629, y: 0.32000002, z: 0.18155634}
+  m_LocalScale: {x: 2.9976, y: 0.37059334, z: 2.9976}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 353168488}

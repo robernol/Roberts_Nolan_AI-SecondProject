@@ -29,10 +29,12 @@ namespace NodeCanvas.Tasks.Actions
         protected override void OnUpdate()
         {
             Vector3 temp = hinge.transform.eulerAngles;
-            temp.x -= 100 * Time.deltaTime;
+            temp.x -= 300 * Time.deltaTime;
             hinge.transform.eulerAngles = temp;
-            if (temp.x <= 0)
+            if ((temp.x < 1) || (temp.x > 300))
             {
+                temp.x = 1;
+                hinge.transform.eulerAngles = temp;
                 EndAction(true);
             }
         }

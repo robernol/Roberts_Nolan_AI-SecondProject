@@ -27,9 +27,11 @@ namespace NodeCanvas.Tasks.Actions {
 			Vector3 temp = hinge.transform.eulerAngles;
             temp.x += 100 * Time.deltaTime;
 			hinge.transform.eulerAngles = temp;
-			if (temp.x >= 80)
+			if (temp.x > 79)
 			{
-				EndAction(true);
+				temp.x = 79;
+                hinge.transform.eulerAngles = temp;
+                EndAction(true);
             }
         }
 
