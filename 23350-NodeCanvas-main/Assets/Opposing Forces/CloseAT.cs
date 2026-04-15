@@ -1,5 +1,7 @@
 using NodeCanvas.Framework;
+using NodeCanvas.Tasks.Conditions;
 using ParadoxNotion.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -8,7 +10,7 @@ namespace NodeCanvas.Tasks.Actions
 
     public class CloseAT : ActionTask
     {
-        public GameObject hinge;
+        public GameObject hinge, lid;
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
@@ -31,6 +33,7 @@ namespace NodeCanvas.Tasks.Actions
             Vector3 temp = hinge.transform.eulerAngles;
             temp.x -= 300 * Time.deltaTime;
             hinge.transform.eulerAngles = temp;
+
             if ((temp.x < 1) || (temp.x > 300))
             {
                 temp.x = 1;
@@ -50,5 +53,6 @@ namespace NodeCanvas.Tasks.Actions
         {
 
         }
+
     }
 }

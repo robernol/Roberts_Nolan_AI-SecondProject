@@ -8,6 +8,7 @@ namespace NodeCanvas.Tasks.Conditions {
 	public class ProximityCT : ConditionTask {
 
 		public BBParameter<Transform> player;
+		public BBParameter<float> proximity;
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
@@ -33,7 +34,7 @@ namespace NodeCanvas.Tasks.Conditions {
 
             Debug.Log(dist);
 			Debug.Log( agent.transform.position);
-            if (dist < 30)
+            if (dist < proximity.value)
 			{
 				return true;
             }
