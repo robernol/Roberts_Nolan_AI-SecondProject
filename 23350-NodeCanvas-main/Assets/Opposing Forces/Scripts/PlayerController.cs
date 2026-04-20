@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject pearl;
     public Vector3 vel, acc;
     bool colliding;
+    public bool hasPearl;
     public float speed;
 
     Rigidbody player;
@@ -108,6 +110,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (hasPearl && collision.gameObject.layer != 12)
+        {
+            hasPearl = false;
+            pearl.GetComponent<Pearl>().DropPearl();
+        }
         colliding = true;
         vel.y = 0;
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class PushAT : ActionTask {
+	public class PositionAT : ActionTask {
 
-		public BBParameter<GameObject> pushObject, fish;
+		public BBParameter<Transform> player;
+		public BBParameter<float> speed, ramTimer;
+		public BBParameter<Pearl> pearl;
 
-        //Use for initialization. This is called only once in the lifetime of the task.
-        //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit() {
 			return null;
 		}
@@ -19,14 +19,29 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			pushObject.value.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -10000));
-            EndAction(true);
+			
 		}
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			
-		}
+			if (pearl.value.GetState() == 1)
+			{
+				ramTimer.value = 0;
+			}
+			else
+			{
+				ramTimer.value = 1;
+			}
+				agent.transform.LookAt(player.value.transform);
+			if (!agent.GetComponent<Fish>().ramRange)
+			{
+                agent.transform.position += agent.transform.forward * Time.deltaTime * speed.value;
+            }
+			else
+			{
+                EndAction(true);
+            }
+        }
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
