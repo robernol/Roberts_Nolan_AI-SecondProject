@@ -10,45 +10,37 @@ namespace NodeCanvas.Tasks.Actions {
 		public BBParameter<GameObject> pearl;
 		public BBParameter<float> speed;
 
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-            agent.transform.LookAt(pearl.value.transform);
+            agent.transform.LookAt(pearl.value.transform); //looks at the pearl and launches towards it
 			agent.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speed.value * 100);
 
         }
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			agent.transform.LookAt(pearl.value.transform);
-			if (agent.GetComponent<Rigidbody>().linearVelocity.magnitude < 0.67f)
+			if (agent.GetComponent<Rigidbody>().linearVelocity.magnitude < 0.67f) //if fish slows down too much, launches again
 			{
                 agent.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speed.value * 100);
             }
-			if (Vector3.Distance(agent.transform.position, pearl.value.transform.position) <= 3)
+			if (Vector3.Distance(agent.transform.position, pearl.value.transform.position) <= 3) //if it gets to the pearl, sets the pearl to the fish state and picks it up
 			{
 				pearl.value.GetComponent<Pearl>().SetState(2);
                 EndAction(true);
             }
-			else if (pearl.value.GetComponent<Pearl>().GetState() == 1)
+			else if (pearl.value.GetComponent<Pearl>().GetState() == 1) //if player picks it up before the fish, goes back to chasing
 			{
 				EndAction(false);
             }
         }
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			
 		}
 
-		//Called when the task is paused.
 		protected override void OnPause() {
 			
 		}

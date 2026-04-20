@@ -24,7 +24,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
-			if (agent.GetComponent<Fish>().tracking)
+			if (agent.GetComponent<Fish>().tracking) //if the fish enters the vicinity of the DetectVolume sphere, the tracking variable in the fish script will become true.
 			{
 				return true;
             }

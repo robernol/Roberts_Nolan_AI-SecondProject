@@ -11,7 +11,6 @@ public class Fish : MonoBehaviour
         playerCollision = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -19,7 +18,7 @@ public class Fish : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == detectVolume)
+        if (other.gameObject == detectVolume) //tracks if the fish has entered the detection range, and/or ram range
         {
             tracking = true;
         }
@@ -30,7 +29,7 @@ public class Fish : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject == player) //tracks if fish is making contact with player
         {
             playerCollision = true;
         }
@@ -38,7 +37,7 @@ public class Fish : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == detectVolume)
+        if (other.gameObject == detectVolume) //tracks if the fish has exited the detection range, and/or ram range
         {
             tracking = false;
         }
@@ -49,7 +48,7 @@ public class Fish : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject == player) //tracks if fish is no longer making contact with player
         {
             playerCollision = false;
         }

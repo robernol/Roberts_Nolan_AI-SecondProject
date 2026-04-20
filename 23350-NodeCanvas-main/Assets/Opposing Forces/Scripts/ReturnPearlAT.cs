@@ -10,40 +10,32 @@ namespace NodeCanvas.Tasks.Actions {
 		public BBParameter<GameObject> clam, pearl;
 		public BBParameter<float> speed;
 
-        //Use for initialization. This is called only once in the lifetime of the task.
-        //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit() {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
-		protected override void OnExecute() {
+		protected override void OnExecute() { //on execute, looks towards the clam and launches towards it
             agent.transform.LookAt(clam.value.transform);
             agent.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speed.value * 100);
         }
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
             agent.transform.LookAt(clam.value.transform);
-            if (agent.GetComponent<Rigidbody>().linearVelocity.magnitude < 0.67f)
+            if (agent.GetComponent<Rigidbody>().linearVelocity.magnitude < 0.67f) //if fish gets too slow, gets launched towards clam again
             {
                 agent.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * speed.value * 100);
             }
-            if (Vector3.Distance(agent.transform.position, clam.value.transform.position) <= 10)
+            if (Vector3.Distance(agent.transform.position, clam.value.transform.position) <= 10) //if it gets close enough to the clam, transfers the pearl back to clam
             {
-                pearl.value.GetComponent<Pearl>().SetState(0);
+                pearl.value.GetComponent<Pearl>().SetState(0); //sets pearl back to the clam state
                 EndAction(true);
             }
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			
 		}
 
-		//Called when the task is paused.
 		protected override void OnPause() {
 			
 		}

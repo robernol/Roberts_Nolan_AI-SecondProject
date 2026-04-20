@@ -11,24 +11,18 @@ namespace NodeCanvas.Tasks.Actions {
 		public float shakeTime;
 		float timer;
 
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
-		protected override void OnExecute() {
+		protected override void OnExecute() { //stores the original position of the clam
 			pos = agent.transform.position;
 			timer = Time.time + shakeTime;
         }
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate()
 		{
-			Vector3 temp = pos;
+			Vector3 temp = pos; //randomly shakes in all directions to convey the clam is about to close
 			temp.x += Random.Range(-0.1f, 0.1f);
 			temp.y += Random.Range(-0.1f, 0.1f);
 			temp.z += Random.Range(-0.1f, 0.1f);
@@ -40,12 +34,10 @@ namespace NodeCanvas.Tasks.Actions {
 			}
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
-			agent.transform.position = pos;
+			agent.transform.position = pos; //resets the position of the clam when not in use
         }
 
-		//Called when the task is paused.
 		protected override void OnPause() {
 			agent.transform.position = pos;
         }

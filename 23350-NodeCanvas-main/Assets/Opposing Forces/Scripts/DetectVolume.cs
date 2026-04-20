@@ -8,9 +8,8 @@ public class DetectVolume : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position;
+        transform.position = player.transform.position; //sets the DetectVolume sphere to the player position to keep things clean(er)
     }
 }

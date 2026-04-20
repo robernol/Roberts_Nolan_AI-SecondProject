@@ -13,42 +13,34 @@ namespace NodeCanvas.Tasks.Actions {
 		public float duration;
 		float timer;
 
-		//Use for initialization. This is called only once in the lifetime of the task.
-		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			timer = Time.time + duration;
-			originalRot = agent.transform.eulerAngles;
+			timer = Time.time + duration; //sets timer
+			originalRot = agent.transform.eulerAngles; //stores original rotation
 		}
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			if (Time.time > timer)
 			{
-                agent.transform.LookAt(player.value);
+                agent.transform.LookAt(player.value); //looks at the player again before ending
                 EndAction(true);
 			}
 			else
 			{
 				agent.transform.LookAt(player.value);
 				Vector3 temp = originalRot;
-				temp.y += swishPath.Evaluate(Time.time);
+				temp.y += swishPath.Evaluate(Time.time); //follows an animationcurve to swish side to side before charging
 				agent.transform.eulerAngles = temp;
 			}
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			
 		}
 
-		//Called when the task is paused.
 		protected override void OnPause() {
 			
 		}

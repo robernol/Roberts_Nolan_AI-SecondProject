@@ -30,7 +30,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
 
-			float dist = ((agent.transform.position) - (player.value.position)).magnitude;
+			float dist = ((agent.transform.position) - (player.value.position)).magnitude; //if distance is less than the proximity value, returns true
             if (dist < proximity.value)
 			{
 				return true;

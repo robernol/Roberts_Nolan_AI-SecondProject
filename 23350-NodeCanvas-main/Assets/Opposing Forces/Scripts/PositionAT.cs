@@ -15,40 +15,34 @@ namespace NodeCanvas.Tasks.Actions {
 			return null;
 		}
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 			
 		}
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			if (pearl.value.GetState() == 1)
+			if (pearl.value.GetState() == 1) //if the pearl has been taken, fish no longer has a cooldown on dashes
 			{
 				ramTimer.value = 0;
 			}
 			else
 			{
-				ramTimer.value = 1;
+				ramTimer.value = 1; //reinstates the cooldown otherwise
 			}
-				agent.transform.LookAt(player.value.transform);
+			agent.transform.LookAt(player.value.transform); //stares the player down
 			if (!agent.GetComponent<Fish>().ramRange)
 			{
-                agent.transform.position += agent.transform.forward * Time.deltaTime * speed.value;
+                agent.transform.position += agent.transform.forward * Time.deltaTime * speed.value; //moves into position if too far away
             }
 			else
 			{
-                EndAction(true);
+                EndAction(true); //if it in position, ends
             }
         }
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			
 		}
 
-		//Called when the task is paused.
 		protected override void OnPause() {
 			
 		}

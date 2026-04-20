@@ -20,12 +20,11 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update() 
     {
         acc = Vector3.zero;
 
-        //forward and backward
+        //forward and backward inputs
         if (Input.GetKey(KeyCode.W))
         {
             acc.z += 10;
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour
             acc.z -= 10;
         }
 
-        //left and right
+        //left and right inputs
         if (Input.GetKey(KeyCode.A))
         {
             acc.x -= 10;
@@ -45,7 +44,7 @@ public class PlayerController : MonoBehaviour
             acc.x += 10;
         }
 
-        //up and down
+        //up and down inputs
         if (Input.GetKey(KeyCode.Space))
         {
             acc.y += 5;
@@ -61,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
         vel += acc;
 
-        if (vel.x > 50){
+        if (vel.x > 50){ //capping all the different velocities so you don't go at warp speed
             vel.x = 50;
         }
         if (vel.x < -50)
@@ -87,19 +86,18 @@ public class PlayerController : MonoBehaviour
             vel.y = -50;
         }
 
-        vel *= 0.9f;
+        vel *= 0.9f; //decays the velocity quickly over time
 
-        Vector3 vertical = Vector3.zero;
+        Vector3 vertical = Vector3.zero; //doing vertical movement and horizontal movement separately or else you could move in all sorts of directions with space/shift
         vertical.y = vel.y;
 
         Vector3 horizontal = new Vector3(vel.x, 0, vel.z);
 
-        //transform.Translate(vel * Time.deltaTime);
-        player.AddForce(vertical * speed * 10 * Time.deltaTime);
+        player.AddForce(vertical * speed * 10 * Time.deltaTime); //vertical is objective
 
-        player.AddRelativeForce(horizontal * speed * 10 * Time.deltaTime);
+        player.AddRelativeForce(horizontal * speed * 10 * Time.deltaTime); //horizontal is relative
 
-        float mouseX = Input.GetAxis("Mouse X") * 2;
+        float mouseX = Input.GetAxis("Mouse X") * 2;  //gets the axises (axes?) of the mouse and rotates the camera accordingly to move camera in first person
         float mouseY = Input.GetAxis("Mouse Y") * 2;
 
         transform.RotateAround (transform.position, Vector3.up, mouseX);
@@ -110,10 +108,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (hasPearl && collision.gameObject.layer != 12)
+        if (hasPearl && collision.gameObject.layer != 12) //the player will drop the pearl if it collides with anything, the exception being objects marked as "standable" (floor, clam bottom half)
         {
             hasPearl = false;
-            pearl.GetComponent<Pearl>().DropPearl();
+            pearl.GetComponent<Pearl>().DropPearl(); //drops the pearl if collides with anything else
         }
         colliding = true;
         vel.y = 0;
